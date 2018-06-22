@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import DrawingForm from './components/DrawingForm';
+import DrawingList from './components/DrawingList';
+import Drawing from './components/Drawing';
+import Connection from './Connection';
 
 class App extends Component {
+  state = {
+  };
+
+  selectDrawing = (drawing) => {
+    this.setState({
+      selectedDrawing: drawing,
+    });
+  }
+
   render() {
+    let ctrl = (
+      <div>
+        <DrawingForm />
+
+        <DrawingList
+          selectDrawing={this.selectDrawing}
+        />
+      </div>
+    );
+
+    if (this.state.selectedDrawing) {
+      ctrl = (
+        <Drawing
+          drawing={this.state.selectedDrawing}
+          key={this.state.selectedDrawing.id}
+        />
+      );
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="App-header">
+          <h2>Our awesome drawing app</h2>
+        </div>
+
+        <Connection />
+
+        { ctrl }
       </div>
     );
   }
