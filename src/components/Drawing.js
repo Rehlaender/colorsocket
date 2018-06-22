@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Canvas from 'simple-react-canvas';
+import CanvasDraw from "react-canvas-draw";
+import MyCanvasDraw from './MyCanvasDraw';
 import { publishLine, subscribeToDrawingLines } from '../api';
 
 class Drawing extends Component {
@@ -15,6 +17,8 @@ class Drawing extends Component {
         };
       });
     });
+
+
   }
 
   handleDraw = (line) => {
@@ -31,6 +35,11 @@ class Drawing extends Component {
         className="Drawing"
       >
         <div className="Drawing-title">{this.props.drawing.name} ({this.state.lines.length} lines)</div>
+        {JSON.stringify(this.state.lines)}
+        <MyCanvasDraw
+          onDraw={this.handleDraw}
+          linesArray={this.state.lines}
+        />
         <Canvas
           onDraw={this.handleDraw}
           drawingEnabled={true}
