@@ -143,3 +143,29 @@ h3 {
   padding: 10px;
   font-size: 20px;
 }
+
+.controlers {
+  position: fixed;
+  bottom: 10px;
+  left: 15px;
+}
+.drawingButtons {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.actionButton {
+  padding: 8px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+.drawingButtons > div {
+  margin-bottom: 10px;
+}
+
+.controlers > div {
+   margin-bottom: 10px;
+}
