@@ -29,21 +29,20 @@ class Drawing extends Component {
     });
   }
 
+  handleChildren = (line) => {
+    console.log(line, 'add line to server')
+  }
+
   render() {
     return (this.props.drawing) ? (
       <div
         className="Drawing"
       >
         <div className="Drawing-title">{this.props.drawing.name} ({this.state.lines.length} lines)</div>
-        {JSON.stringify(this.state.lines)}
+
         <MyCanvasDraw
-          onDraw={this.handleDraw}
-          linesArray={this.state.lines}
-        />
-        <Canvas
-          onDraw={this.handleDraw}
-          drawingEnabled={true}
           lines={this.state.lines}
+          onChange={this.handleDraw}
         />
       </div>
     ) : null;

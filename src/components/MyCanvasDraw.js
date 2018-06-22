@@ -12,7 +12,10 @@ export default class extends Component {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+      lastLength: 0,
+    };
+    this.lastLength = 0;
     this.isMouseDown = false;
     this.linesArray = [];
     this.startDrawIdx = [];
@@ -192,13 +195,29 @@ export default class extends Component {
 
     // notify parent that a new line was added
     if (typeof this.props.onChange === "function") {
-      this.props.onChange(this.linesArray);
+      this.props.onChange(line);
+      console.log('ya dibuje este pedo', line);
     }
 
     // set current x, y coords
     this.x = newX;
     this.y = newY;
   };
+
+  componentWillReceiveProps (nextProps) {
+  //todo: find a better way to see if a coordinate has been applied
+    if (nextProps.lines && nextProps.lines.length > this.state.lastLength) {
+      for (let i = this.lastLength; i < nextProps.lines.length; i += 1) {
+        // console.log('looping through lines ', i);
+        const l = nextProps.lines[i];
+        this.drawLine(l);
+      }
+
+      this.setState({
+        lastLength: nextProps.lines.length,
+      });
+    }
+  }
 
   render() {
     return (
