@@ -34,15 +34,19 @@ class Drawing extends Component {
   }
 
   render() {
+    let windowWidth = window.innerWidth-20;
+    let windowHeigth = window.innerHeight-20;
+
     return (this.props.drawing) ? (
       <div
         className="Drawing"
       >
         <div className="Drawing-title">{this.props.drawing.name} ({this.state.lines.length} lines)</div>
-
         <MyCanvasDraw
           lines={this.state.lines}
           onChange={this.handleDraw}
+          canvasWidth={windowWidth}
+          canvasHeight={windowHeigth}
         />
       </div>
     ) : null;

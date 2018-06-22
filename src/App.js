@@ -17,9 +17,8 @@ class App extends Component {
 
   render() {
     let ctrl = (
-      <div>
+      <div className="contentContainer">
         <DrawingForm />
-
         <DrawingList
           selectDrawing={this.selectDrawing}
         />
@@ -37,12 +36,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Our awesome drawing app</h2>
-        </div>
-
         <Connection />
-
         { ctrl }
       </div>
     );

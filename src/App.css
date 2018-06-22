@@ -1,4 +1,4 @@
-html,body, #root { height: 100%; margin: 0px; padding: 0px; }
+html,body, #root { height: 100%; margin: 0px; padding: 0px; overflow-y: hidden; }
 
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
@@ -13,8 +13,6 @@ body {
   box-sizing: border-box;
 }
 
-
-
 .App {
   text-align: left;
   height: 100%;
@@ -27,13 +25,23 @@ body {
 }
 
 .App-header {
-  background-color: #222;
-  padding: 5px;
-  padding-left: 20px;
-  color: white;
+  background-color: transparent;
+  color: tomato;
   margin-bottom: 20px;
+  position: fixed;
+  top: 10px;
+  right: 3em;
 }
 
+.App-header > h2 {
+  margin: 0px;
+  padding-left: 15px
+}
+
+h3 {
+  margin: 0px;
+  padding-left: 20px;
+}
 .App-intro {
   font-size: large;
 }
@@ -43,11 +51,14 @@ body {
 }
 
 .Drawing-title {
-   font-size: 33px;
-   padding: 10px;
-   background-color: #444;
-   color: #fff;
+   font-size: 1em;
+   background-color: transparent;
+   color: tomato;
    font-weight: 100;
+   word-break: break-word;
+   position: fixed;
+   top: 40px;
+   right: 3em;
 }
 
 .Form {
@@ -69,13 +80,18 @@ body {
   font-size: 20px;
 }
 
+.contentContainer {
+  height: 95vh;
+  overflow-y: scroll;
+}
+
 .Form-button {
   font-size: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 13px;
   padding-bottom: 13px;
-  background-color: #333;
+  background-color: tomato;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -83,7 +99,12 @@ body {
 
 .DrawingList {
   background-color: #fff;
-  padding-left: 0px;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.DrawingList > ul {
+  padding: 0px;
 }
 
 

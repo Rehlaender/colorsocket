@@ -31,11 +31,13 @@ class DrawingList extends Component {
     ));
 
     return (
-      <ul
-        className="DrawingList"
-      >
-        {drawings}
-      </ul>
+      <div className="DrawingList">
+        <h3>drawings</h3>
+
+        <ul>
+          {drawings}
+        </ul>
+      </div>
     );
   }
 }

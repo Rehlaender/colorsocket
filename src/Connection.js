@@ -34,7 +34,9 @@ class Connection extends Component {
 
     return (
       <div className="Connection">
-        <div className="Connection-port">Socket port: {this.state.port}</div>
+        <div className="App-header">
+          <h2>colorsocket<span style={{color: 'lightgray'}}>:maar</span></h2>
+        </div>
         {content}
       </div>
     );
