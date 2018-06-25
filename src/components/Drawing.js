@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import MyCanvasDraw from './MyCanvasDraw';
 import { publishLine, subscribeToDrawingLines } from '../api';
-import { HuePicker, AlphaPicker } from 'react-color'
+import { HuePicker } from 'react-color'
 
 class Drawing extends Component {
   state = {
     lines: [],
     color: '#000',
   }
-
-
 
   componentDidMount() {
     subscribeToDrawingLines(this.props.drawing.id, (linesEvent) => {
@@ -53,7 +51,9 @@ class Drawing extends Component {
             />
         </div>
         <div className="drawingButtons">
-          <div className="actionButton" style={{backgroundColor: '#BAF4FF'}}><i class="fas fa-chevron-left"></i></div>
+          <div onClick={() => this.props.goBack(null)}
+            className="actionButton" style={{backgroundColor: '#BAF4FF'}}>
+            <i class="fas fa-chevron-left"></i></div>
           <div className="actionButton" style={{backgroundColor: 'tomato'}}><i class="fas fa-trash-alt"></i></div>
         </div>
         <MyCanvasDraw

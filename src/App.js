@@ -7,6 +7,7 @@ import Connection from './Connection';
 
 class App extends Component {
   state = {
+    selectDrawing: null
   };
 
   selectDrawing = (drawing) => {
@@ -28,6 +29,7 @@ class App extends Component {
     if (this.state.selectedDrawing) {
       ctrl = (
         <Drawing
+          goBack={this.selectDrawing}
           drawing={this.state.selectedDrawing}
           key={this.state.selectedDrawing.id}
         />
