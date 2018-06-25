@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MyCanvasDraw from './MyCanvasDraw';
-import { publishLine, subscribeToDrawingLines } from '../api';
+import { publishLine, subscribeToDrawingLines, clearDrawing } from '../api';
 import { HuePicker } from 'react-color'
 
 class Drawing extends Component {
@@ -17,8 +17,20 @@ class Drawing extends Component {
         };
       });
     });
+  }
 
+  componentWIllMount() {
+    subscribeToDrawingLines(this.props.drawing.id, (linesEvent) => {
+      this.setState((prevState) => {
+        return {
+          lines: [...prevState.lines, ...linesEvent.lines],
+        };
+      });
+    });
+  }
 
+  clear = () => {
+    clearDrawing(this.props.drawing.id);
   }
 
   handleDraw = (line) => {
@@ -27,10 +39,6 @@ class Drawing extends Component {
       drawingId: this.props.drawing.id,
       line,
     });
-  }
-
-  handleChildren = (line) => {
-    console.log(line, 'add line to server')
   }
 
   render() {
@@ -51,12 +59,15 @@ class Drawing extends Component {
             />
         </div>
         <div className="drawingButtons">
-          <div onClick={() => this.props.goBack(null)}
+          <div onClick={() => window.location.reload()}
             className="actionButton" style={{backgroundColor: '#BAF4FF'}}>
-            <i class="fas fa-chevron-left"></i></div>
-          <div className="actionButton" style={{backgroundColor: 'tomato'}}><i class="fas fa-trash-alt"></i></div>
+            <i className="fas fa-chevron-left"></i></div>
+          <div onClick={() => {this.clear()}}
+          className="actionButton" style={{backgroundColor: 'tomato'}}>
+          <i className="fas fa-trash-alt"></i></div>
         </div>
         <MyCanvasDraw
+          ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           lines={this.state.lines}
           onChange={this.handleDraw}
           canvasWidth={windowWidth}

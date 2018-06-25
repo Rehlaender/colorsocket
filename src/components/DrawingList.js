@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   subscribeToDrawings,
+  deleteDrawing
 } from '../api';
 
 
@@ -19,14 +20,20 @@ class DrawingList extends Component {
     drawings: [],
   };
 
+  deleteDrawing = (id) => {
+    deleteDrawing(id);
+  }
+
   render() {
     const drawings = this.state.drawings.map(drawing => (
       <li
         className="DrawingList-item"
         key={drawing.id}
-        onClick={event => this.props.selectDrawing(drawing)}
       >
-        {drawing.name}
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <div onClick={event => this.props.selectDrawing(drawing)}>{drawing.name}</div>
+          <span onClick={() => {this.deleteDrawing(drawing.id)}} style={{color: 'red'}}><i className="fas fa-times"></i></span>
+        </div>
       </li>
     ));
 
