@@ -15,6 +15,15 @@ function createDrawing(name) {
   socket.emit('createDrawing', { name });
 }
 
+function clearDrawing(drawingId) {
+  socket.emit('clearDrawing', { drawingId }).then(window.location.reload());
+}
+
+function deleteDrawing(id) {
+  socket.emit('deleteDrawing', { id })
+  .then(alert(`deleted drawing with id: ${id}`, window.location.reload() ));
+}
+
 const sync = createSync({
   maxRetries: 10,
   delayBetweenRetries: 1000,
@@ -36,6 +45,7 @@ const sync = createSync({
 
 sync.failedItems.subscribe(x => console.error('failed line sync: ', x));
 sync.syncedItems.subscribe(x => console.log('successful line sync: ', x));
+
 
 
 function publishLine({ drawingId, line }) {
@@ -87,4 +97,6 @@ export {
   subscribeToDrawings,
   subscribeToDrawingLines,
   subscribeToConnectionEvent,
+  clearDrawing,
+  deleteDrawing,
 };

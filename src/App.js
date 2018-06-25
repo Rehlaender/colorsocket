@@ -7,6 +7,7 @@ import Connection from './Connection';
 
 class App extends Component {
   state = {
+    selectDrawing: null
   };
 
   selectDrawing = (drawing) => {
@@ -17,9 +18,8 @@ class App extends Component {
 
   render() {
     let ctrl = (
-      <div>
+      <div className="contentContainer">
         <DrawingForm />
-
         <DrawingList
           selectDrawing={this.selectDrawing}
         />
@@ -29,6 +29,7 @@ class App extends Component {
     if (this.state.selectedDrawing) {
       ctrl = (
         <Drawing
+          goBack={this.selectDrawing}
           drawing={this.state.selectedDrawing}
           key={this.state.selectedDrawing.id}
         />
@@ -37,12 +38,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Our awesome drawing app</h2>
-        </div>
-
         <Connection />
-
         { ctrl }
       </div>
     );
