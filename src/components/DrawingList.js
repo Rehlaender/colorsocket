@@ -31,7 +31,7 @@ class DrawingList extends Component {
         key={drawing.id}
       >
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <div onClick={event => this.props.selectDrawing(drawing)}>{drawing.name}</div>
+          <div style={{height: '100%', width: '100%'}} onClick={event => this.props.selectDrawing(drawing)}>{drawing.name}</div>
           <span onClick={() => {this.deleteDrawing(drawing.id)}} style={{color: 'red'}}><i className="fas fa-times"></i></span>
         </div>
       </li>
